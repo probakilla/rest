@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Register user</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<meta charset="UTF-8">
+	<title>Register user</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="script.js" defer></script>
 </head>
+
 <body>
 <div class="container">
 	<div class="row">
-	<form action="/HelloWorld/user/register" name="register" method="POST">
-		<h5>First name</h5><br>
-   		<input name="firstName" type="text"><br>
-   		<h5>Last name</h5><br>
-   		<input name="lastName" type="text"><br>
-   		<input class="danger-btn" type="submit" value="Register"/>
-	</form>
+		<div class="col-sm-6">
+			List des actions :
+			<button id="btn-list" class="btn-danger">GET list</button> <br>
+			User : 
+			<input type="text" name="user-name" id="user-input" value="" />
+			<button id="user-btn" class="btn-danger">Search by first name</button> <br>
+			<br>
+			first name to post :
+			<input type="text" name="first-name" id="first-name" value ="" /> <br>
+			last name to post :
+			<input type="text" name ="last-name" id="last-name" value="" /> <br>
+			<button id="post-btn" class="btn-danger">POST</button>
+			
+		</div>
+		
+		<div class="col-sm-6">
+			<a id="display"></a>
+		</div>
 	</div>
 </div>
 </body>

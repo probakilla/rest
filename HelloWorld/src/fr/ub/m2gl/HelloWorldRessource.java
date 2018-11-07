@@ -12,7 +12,6 @@ import javax.ws.rs.core.Response;
 import org.bson.Document;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
@@ -92,7 +91,8 @@ public class HelloWorldRessource {
 	    FindIterable<Document> iterable = collection.find(eq("firstName", userName));
 	    for (Document doc : iterable) {
 	    	sb.append(doc.get("firstName")).append(" : ");
-	    	sb.append(doc.get("lastName")).append(System.getProperty("line.separator"));
+	    	sb.append(doc.get("lastName")).append(" ");
+	    	sb.append(System.getProperty("line.separator"));
 	    }
 	}
 	catch (Exception e) {
