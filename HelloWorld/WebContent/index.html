@@ -12,22 +12,41 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6">
-			List des actions :
+			Actions : <br>
+			<label for="btn-list">Display all users :</label>
 			<button id="btn-list" class="btn-danger">GET list</button> <br>
-			User : 
-			<input type="text" name="user-name" id="user-input" value="" />
+			<hr>
+			<label for="user-name"> User :</label> 
+			<input type="text" name="user-name" id="user-input" value="" /> <br>
 			<button id="user-btn" class="btn-danger">Search by first name</button> <br>
 			<br>
-			first name to post :
+			<hr>
+			<label for="first-name">first name to post :</label>
 			<input type="text" name="first-name" id="first-name" value ="" /> <br>
-			last name to post :
+			<label for="last-name">last name to post :</label>
 			<input type="text" name ="last-name" id="last-name" value="" /> <br>
-			<button id="post-btn" class="btn-danger">POST</button>
-			
+			<button id="post-btn" class="btn-danger">POST</button> <br>
+			<hr>
+			<label for="put-search">Person to modify</label>
+			<input type="text" name="put-search" id="put-search" value="" /> <br>
+			<label for="first-name-put">New first name</label>
+			<input type="text" name="first-name-put" id="first-name-put" value="" /> <br>
+			<label for="last-name-put">New last name</label>
+			<input type="text" name="last-name-put" id="last-name-put" value="" /> <br>
+			<button id="put-btn" class="btn-danger">PUT</button>
+			<hr>
+			<label for="delete">Person to delete</label>
+			<input type="text" name="delete" id="delete" value=""> <br>
+			<button id="delete-btn" class="btn-danger">DELETE</button>
 		</div>
 		
 		<div class="col-sm-6">
-			<a id="display"></a>
+			<div class="card">
+				<div class="card-body">
+					<h3 class="card-title">Result :</h3>
+					<p id="display" class="card-text"></p>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
