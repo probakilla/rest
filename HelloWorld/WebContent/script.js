@@ -23,17 +23,37 @@ class User {
 }
 	
 $('#btn-list').click(() => {
-	$.get(urlList, function(data, status) {
-		$('#display').html(data);
-	});
+	$('#display').html(" ");
+	$.ajax({
+		url:urlList,
+		type:"get",
+		dataType:"json",
+		data: { getParam: 'value' },
+		success: function (data) {
+	        $.each(data, function(index, user) {
+	            $('#display').append($('<div>', {
+	                text: user.firstName + " " + user.lastName
+	            }));
+	        });
+		}
+	})	
 });
 
 
 $('#user-btn').click(() => {
+	$('#display').html(" ");
 	const userName = $('#user-input').val();
-	$.get(urlUser + userName, function(data, status) {
-		$('#display').html(data);
-	});
+	$.ajax({
+		url:urlUser + userName,
+		type:"get",
+		dataType:"json",
+		data: { getParam: 'value' },
+		success: function (data) {
+	       $('#display').append($('<div>', {
+	           text: data.firstName + " " + data.lastName
+	       }));
+		}
+	})	
 });
 
 $('#post-btn').click(() => {
@@ -44,14 +64,16 @@ $('#post-btn').click(() => {
 	$.ajax({
 		url:urlPOST,
 		type:"post",
-		dataType:"json",
+		dataType:"plain/text",
 		contentType:"application/json",
 		success: function(){
 			$("#display").html("success")
 		},
+		complete: function(){
+			$('#display').html(firstName + " : " + lastName + " added")
+		},
 		data: JSON.stringify(user)
 	});
-	$('#display').html(user.firstName + " : " + user.lastName + " added")
 });
 
 $('#put-btn').click(() => {
@@ -63,22 +85,30 @@ $('#put-btn').click(() => {
 	$.ajax({
 		url:urlSearch,
 		type:"put",
-		dataType:"json",
+		dataType:"plain/text",
 		contentType:"application/json",
 		success: function(){
 			$("#display").html("success")
+		},		
+		complete: function(){
+			$('#display').html(user.firstName + " : " + user.lastName + " modified")
 		},
 		data: JSON.stringify(user)
 	});
-	$('#display').html(user.firstName + " : " + user.lastName + " modified")
 });
 
 $('#delete-btn').click(() => {
 	let urlSearch = urlDELETE + $('#delete').val()
 	$.ajax({
 		type:"DELETE",
-		url: urlSearch,
+		dataType:"plain/text",
+		url: urlSearch,		
+		success: function(){
+			$("#display").html($('#delete').val() + " deleted")
+		},		
+		complete: function(){
+			$('#display').html($('#delete').val() + " deleted")
+		},
 	});
-	$('#display').html($('#delete').val() + " deleted")
 })
 

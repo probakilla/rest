@@ -1,5 +1,8 @@
 package fr.ub.m2gl;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 	private String _firstName;
 	private String _lastName;

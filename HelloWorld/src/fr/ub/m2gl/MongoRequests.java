@@ -2,6 +2,9 @@ package fr.ub.m2gl;
 
 import static com.mongodb.client.model.Filters.eq;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import org.bson.Document;
 import org.bson.conversions.Bson;
 
@@ -43,14 +46,16 @@ public class MongoRequests {
 		return out;
 	}
 
-	public String userList () {
-		StringBuilder sb = new StringBuilder();
+	public ArrayList<User> userList () {
+		ArrayList<User> listUser = new ArrayList<User>();
 		try {
 			MongoDatabase db = _client.getDatabase("progweb");
 			MongoCollection<Document> collection = db.getCollection("users");
 			FindIterable<Document> iterable = collection.find();
+			ObjectMapper mapper = new ObjectMapper();
 			for (Document doc : iterable) {
-				sb.append(doc.toJson());
+				User usr = mapper.readValue(doc.toJson(), User.class);
+				listUser.add(usr);
 			}
 		}
 		catch (Exception e) {
@@ -58,7 +63,7 @@ public class MongoRequests {
 		} finally {
 			_client.close();
 		}
-		return sb.toString();
+		return listUser;
 	}
 
 	public String getUser (String userName) {

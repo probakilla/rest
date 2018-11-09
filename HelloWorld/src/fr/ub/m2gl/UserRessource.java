@@ -24,15 +24,15 @@ public class UserRessource {
     @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String registerUser(User user) {
-    	return _database.registerUser(user);
+    public Response registerUser(User user) {
+    	return Response.status(200).entity(_database.registerUser(user)).build();
     }
     
     @GET
     @Path("users")
     @Produces(MediaType.APPLICATION_JSON)
-    public String userList() {
-    	return _database.userList();
+    public Response userList() {
+    	return Response.status(200).entity(_database.userList()).build();
     }
     
     @GET
@@ -46,15 +46,15 @@ public class UserRessource {
     @Path("/user/{userName}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
-    public String updateUser(@PathParam("userName") String userName,
+    public Response updateUser(@PathParam("userName") String userName,
     		User user) {
-    	return _database.updateUser(userName, user);
+      	return Response.status(200).entity(_database.updateUser(userName, user)).build();
     }
     
     @DELETE
     @Path("/user/{userName}")
     @Produces(MediaType.APPLICATION_JSON)
-    public String deleteUser(@PathParam("userName") String userName) {
-    	return _database.deleteUser(userName);
+    public Response deleteUser(@PathParam("userName") String userName) {
+    	return Response.status(200).entity(_database.deleteUser(userName)).build();
     }
 }
